@@ -194,10 +194,10 @@ classDiagram
     ParkingFloor *-- ParkingSpot
     ParkingLot *-- EntryGate
     ParkingLot *-- ExitGate
-    ParkingLot --> ISlotAllocationStrategy
+    ParkingLot *-- ISlotAllocationStrategy
 
     EntryGate --> Ticket
-    ExitGate --> IPricingStrategy
+    ExitGate *-- IPricingStrategy
     Ticket --> Vehicle
     Ticket --> ParkingSpot
     ParkingSpot --> Vehicle
