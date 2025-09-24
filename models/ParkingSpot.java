@@ -16,6 +16,13 @@ public class ParkingSpot {
         this.currentVehicle = null;
     }
     
+    public ParkingSpot(ParkingSpot other) {
+        this.spotType = other.spotType;
+        this.hasChargingPoint = other.hasChargingPoint;
+        this.isAvailable = other.isAvailable;
+        this.currentVehicle = other.currentVehicle;
+    }
+    
     public void parkVehicle(Vehicle vehicle) {
         if (!isAvailable) {
             throw new IllegalStateException("Parking spot is already occupied");

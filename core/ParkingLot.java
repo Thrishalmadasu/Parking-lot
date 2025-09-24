@@ -2,7 +2,6 @@ package core;
 
 import interfaces.ISlotAllocationStrategy;
 import models.*;
-import vehicles.Vehicle;
 import java.util.*;
 
 public class ParkingLot {
@@ -36,7 +35,7 @@ public class ParkingLot {
         for (ParkingFloor floor : floors) {
             for (ParkingSpot spot : floor.getSpots()) {
                 if (spot.isAvailable()) {
-                    emptySpots.add(spot);
+                    emptySpots.add(new ParkingSpot(spot));
                 }
             }
         }
@@ -44,15 +43,27 @@ public class ParkingLot {
     }
     
     public List<ParkingFloor> getFloors() {
-        return new ArrayList<>(floors);
+        List<ParkingFloor> floorsCopy = new ArrayList<>();
+        for (ParkingFloor floor : floors) {
+            floorsCopy.add(new ParkingFloor(floor));
+        }
+        return floorsCopy;
     }
     
     public List<EntryGate> getEntryGates() {
-        return new ArrayList<>(entryGates);
+        List<EntryGate> gatesCopy = new ArrayList<>();
+        for (EntryGate gate : entryGates) {
+            gatesCopy.add(new EntryGate(gate));
+        }
+        return gatesCopy;
     }
     
     public List<ExitGate> getExitGates() {
-        return new ArrayList<>(exitGates);
+        List<ExitGate> gatesCopy = new ArrayList<>();
+        for (ExitGate gate : exitGates) {
+            gatesCopy.add(new ExitGate(gate));
+        }
+        return gatesCopy;
     }
     
     public ISlotAllocationStrategy getAllocationStrategy() {

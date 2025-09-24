@@ -12,6 +12,11 @@ public class EntryGate {
         this.gateId = gateId;
     }
     
+    public EntryGate(EntryGate other) {
+        this.gateId = other.gateId;
+        this.parkingLot = other.parkingLot;
+    }
+    
     public void setParkingLot(ParkingLot parkingLot) {
         this.parkingLot = parkingLot;
     }

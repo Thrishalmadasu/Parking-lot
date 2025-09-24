@@ -5,9 +5,7 @@ import core.ParkingLot;
 import models.*;
 import vehicles.*;
 import enums.*;
-import interfaces.*;
 import strategies.*;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,7 +29,6 @@ public class ParkingLotDemo {
                 .setFloors(2)
                 .setSpotsPerFloor(spotConfiguration)
                 .setAllocationStrategy(new NearestSlotStrategy())
-                .setPricingStrategy(new HourlyPricingStrategy())
                 .build();
     }
     
@@ -61,9 +58,7 @@ public class ParkingLotDemo {
         System.out.println("Let's see how vehicles use our parking system:\n");
         
         Vehicle myBike = new Bike("KA01AB1234");
-        Vehicle familyCar = new Car("KA05EF9012");
-        Vehicle cityBus = new Bus("KA09GH3456");
-        
+        Vehicle familyCar = new Car("KA05EF9012");        
         ElectricBike ecoFriendlyBike = new ElectricBike("KA02CD5678");
         ecoFriendlyBike.setWantsCharging(true);
         

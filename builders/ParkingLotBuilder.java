@@ -2,7 +2,6 @@ package builders;
 
 import enums.SpotType;
 import interfaces.ISlotAllocationStrategy;
-import interfaces.IPricingStrategy;
 import models.ParkingFloor;
 import models.ParkingSpot;
 import java.util.Map;
@@ -11,8 +10,7 @@ import java.util.HashMap;
 public class ParkingLotBuilder {
     private int totalFloors;
     private Map<SpotType, Integer> spotLayout;
-    private ISlotAllocationStrategy howToFindSpots;
-    private IPricingStrategy howToCalculatePrice;
+    private ISlotAllocationStrategy slotAllocationStrategy;
     
     public ParkingLotBuilder() {
         this.spotLayout = new HashMap<>();
@@ -29,21 +27,17 @@ public class ParkingLotBuilder {
     }
     
     public ParkingLotBuilder setAllocationStrategy(ISlotAllocationStrategy strategy) {
-        this.howToFindSpots = strategy;
+        this.slotAllocationStrategy = strategy;
         return this;
     }
     
-    public ParkingLotBuilder setPricingStrategy(IPricingStrategy pricing) {
-        this.howToCalculatePrice = pricing;
-        return this;
-    }
     
     public core.ParkingLot build() {
-        if (howToFindSpots == null) {
+        if (slotAllocationStrategy == null) {
             throw new IllegalStateException("You need to tell me how to find parking spots!");
         }
         
-        core.ParkingLot newParkingLot = new core.ParkingLot(howToFindSpots);
+        core.ParkingLot newParkingLot = new core.ParkingLot(slotAllocationStrategy);
         
         for (int floorNumber = 1; floorNumber <= totalFloors; floorNumber++) {
             ParkingFloor currentFloor = new ParkingFloor(floorNumber);

@@ -12,12 +12,24 @@ public class ParkingFloor {
         this.spots = new ArrayList<>();
     }
     
+    public ParkingFloor(ParkingFloor other) {
+        this.floorNo = other.floorNo;
+        this.spots = new ArrayList<>();
+        for (ParkingSpot spot : other.spots) {
+            this.spots.add(new ParkingSpot(spot));
+        }
+    }
+    
     public void addSpot(ParkingSpot spot) {
         spots.add(spot);
     }
     
     public List<ParkingSpot> getSpots() {
-        return new ArrayList<>(spots);
+        List<ParkingSpot> spotsCopy = new ArrayList<>();
+        for (ParkingSpot spot : spots) {
+            spotsCopy.add(new ParkingSpot(spot));
+        }
+        return spotsCopy;
     }
     
     public int getFloorNo() {

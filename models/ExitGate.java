@@ -11,6 +11,11 @@ public class ExitGate {
         this.pricingStrategy = pricingStrategy;
     }
     
+    public ExitGate(ExitGate other) {
+        this.gateId = other.gateId;
+        this.pricingStrategy = other.pricingStrategy;
+    }
+    
     public double processExit(Ticket ticket) {
         return pricingStrategy.calculatePrice(ticket);
     }
